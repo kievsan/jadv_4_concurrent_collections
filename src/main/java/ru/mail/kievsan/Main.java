@@ -17,19 +17,19 @@ public class Main {
 
         Thread threadA = new Thread(() -> {
             MaxText max = charMaxCount(queueA, 'a');
-            System.out.println("\nИтог:\t" + max);
+            System.out.println("Итог:\t" + max);
         });
         threadA.start();
 
         Thread threadB = new Thread(() -> {
             MaxText max = charMaxCount(queueB, 'b');
-            System.out.println("\nИтог:\t" + max);
+            System.out.println("Итог:\t" + max);
         });
         threadB.start();
 
         Thread threadC = new Thread(() -> {
             MaxText max = charMaxCount(queueC, 'c');
-            System.out.println("\nИтог:\t" + max);
+            System.out.println("Итог:\t" + max);
         });
         threadC.start();
 
@@ -48,7 +48,7 @@ public class Main {
                     queueB.put(text);
                     queueC.put(text);
                     if ((i + 1) % 1000 == 0) {
-                        System.out.println("\nСгенерили " + (i + 1) + "-й текст");
+                        System.out.println("Сгенерили " + (i + 1) + "-й текст");
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -82,9 +82,9 @@ public class Main {
                 System.out.println(Thread.currentThread().getName() + " was interrupted");
             } finally {
                 result = new MaxText(maxText, maxTextNumber, max, letter);
-                if ((i + 1) % 1000 == 0) {
-                    System.out.println(result);
-                }
+//                if ((i + 1) % 1000 == 0) {
+//                    System.out.println(result);
+//                }
                 count = 0;
             }
         }
