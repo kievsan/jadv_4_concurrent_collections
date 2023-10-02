@@ -17,19 +17,19 @@ public class Main {
 
         Thread threadA = new Thread(() -> {
             MaxText max = charMaxCount(queueA, 'a');
-            max.print();
+            System.out.println(max);
         });
         threadA.start();
 
         Thread threadB = new Thread(() -> {
             MaxText max = charMaxCount(queueB, 'b');
-            max.print();
+            System.out.println(max);
         });
         threadB.start();
 
         Thread threadC = new Thread(() -> {
             MaxText max = charMaxCount(queueC, 'c');
-            max.print();
+            System.out.println(max);
         });
         threadC.start();
 

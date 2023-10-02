@@ -10,8 +10,4 @@ public record MaxText(String maxText,
                 " букв '" + this.baseChar +
                 "' в тексте под номером " + maxTextNumber;
     }
-
-    public void print() {
-        System.out.println(this);
-    }
 }
