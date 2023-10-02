@@ -17,19 +17,19 @@ public class Main {
 
         Thread threadA = new Thread(() -> {
             MaxText max = charMaxCount(queueA, 'a');
-            System.out.println(max);
+            System.out.println("\nИтог:\t" + max);
         });
         threadA.start();
 
         Thread threadB = new Thread(() -> {
             MaxText max = charMaxCount(queueB, 'b');
-            System.out.println(max);
+            System.out.println("\nИтог:\t" + max);
         });
         threadB.start();
 
         Thread threadC = new Thread(() -> {
             MaxText max = charMaxCount(queueC, 'c');
-            System.out.println(max);
+            System.out.println("\nИтог:\t" + max);
         });
         threadC.start();
 
@@ -48,7 +48,7 @@ public class Main {
                     queueB.put(text);
                     queueC.put(text);
                     if ((i + 1) % 1000 == 0) {
-                        System.out.println("Сгенерили " + (i + 1) + "-й текст");
+                        System.out.println("\nСгенерили " + (i + 1) + "-й текст");
                     }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -60,13 +60,13 @@ public class Main {
     private static MaxText charMaxCount(BlockingQueue<String> queue, char letter) {
         int max, maxTextNumber, count;
         String text, maxText;
-        MaxText result;
+        MaxText result = null;
         count = 0;
         max = 0;
         maxTextNumber = 0;
         maxText = "";
-        try {
-            for (int i = 0; i < textGenerationCount; i++) {
+        for (int i = 0; i < textGenerationCount; i++) {
+            try{
                 text = queue.take();
                 for (char c : text.toCharArray()) {
                     if (c == letter) count++;
@@ -76,12 +76,15 @@ public class Main {
                     maxTextNumber = i;
                     maxText = text;
                 }
+            } catch (InterruptedException e) {
+                System.out.println(Thread.currentThread().getName() + " was interrupted");
+            } finally {
+                result = new MaxText(maxText, maxTextNumber, max, letter);
+                if ((i + 1) % 1000 == 0) {
+                    System.out.println(result);
+                }
                 count = 0;
             }
-        } catch (InterruptedException e) {
-            System.out.println(Thread.currentThread().getName() + " was interrupted");
-        } finally {
-            result = new MaxText(maxText, maxTextNumber, max, letter);
         }
         return result;
     }
