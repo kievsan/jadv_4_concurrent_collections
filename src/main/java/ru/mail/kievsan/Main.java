@@ -3,7 +3,6 @@ package ru.mail.kievsan;
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Main {
     public static final int textGenerationCount = 10_000, textSize = 100_000;
