@@ -6,8 +6,8 @@ public record MaxText(String maxText,
                       char baseChar) {
     @Override
     public String toString() {
-        return "Max количество " + this.maxChars +
-                " букв '" + this.baseChar +
+        return "Max количество " + maxChars +
+                " букв '" + baseChar +
                 "' в тексте под номером " + maxTextNumber;
     }
 }
