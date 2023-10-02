@@ -60,11 +60,13 @@ public class Main {
     private static MaxText charMaxCount(BlockingQueue<String> queue, char letter) {
         int max, maxTextNumber, count;
         String text, maxText;
+
         MaxText result = null;
         count = 0;
         max = 0;
         maxTextNumber = 0;
         maxText = "";
+
         for (int i = 0; i < textGenerationCount; i++) {
             try{
                 text = queue.take();
